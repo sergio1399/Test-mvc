@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import ru.sergio.testmvc.dto.Order;
@@ -41,7 +42,7 @@ public class TestMvcController {
     }
 
     private void checkProducts(List<Product> products) {
-        if (products == null || products.isEmpty()) {
+        if (CollectionUtils.isEmpty(products)) {
             throw new WrongFormatException("Product list is absent");
         }
         for (Product product : products) {
